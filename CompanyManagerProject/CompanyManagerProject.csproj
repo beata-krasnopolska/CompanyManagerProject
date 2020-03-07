@@ -95,5 +95,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CompanyManager.DAL\CompanyManager.DAL.csproj">
+      <Project>{c33236c5-13e4-44f4-94bb-d5c840699361}</Project>
+      <Name>CompanyManager.DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

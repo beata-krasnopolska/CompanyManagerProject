@@ -13,7 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Configuration;
-using CompanyManager.DAL;
+using CompanyManager.DAL.Repository;
+using CompanyManager.DAL.Entities;
 
 namespace CompanyManagerProject
 {
@@ -22,29 +23,82 @@ namespace CompanyManagerProject
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly PersonService _personService = new PersonService();
+
         public MainWindow()
         {
             InitializeComponent();
-            var connectionString = ConfigurationManager.ConnectionStrings["CompanyManagerProject.Properties.Settings.CompanyManagerConnectionString"].ConnectionString;
-            //dataContext = 
+            
         }
 
-        public void InsertPerson()
+        private void BtnAddPerson_Click(object sender, RoutedEventArgs e)
         {
-            //var manager = dataContext.Posts.First(p => p.PostName == "Manager");
-            //var assistant = dataContext.Posts.First(p => p.PostName == "Assistant");
+            
+            var person = new Person()
+            {
+                Name = TxtName.Text,
+                Surname = TxtSurname.Text,
+                //Post = 
+            };
+            _personService.InsertPerson(person);            
+        }
 
-            InsertPerson(); // metoda z PersonService
+        private void ListPersons_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var person = MainDataGrid.SelectedItem as Person;
 
-            //dataContext.Persons.InsertAllOnSubmit(people);
-            //dataContext.SubmitChanges();
-            //MainDataGrid.ItemsSource = dataContext.Persons.Select(x => new Entity.Person
-            //{
-            //    Id = x.Id,
-            //    Gender = x.Gender,
-            //    PostId = x.PostId,
-            //    Name = x.PersonName
-            //}).ToList();
+            if (person == null)
+            {
+                return;
+            }
+
+            if (person != null)
+            {
+                TxtName.Text = person.Name;
+                TxtSurname.Text = person.Surname;
+                //TxtPost.Text = person.Post.PostName;
+            }
+        }
+
+        private void BtnUpdatePerson_Click(object sender, RoutedEventArgs e)
+        {
+            var person = MainDataGrid.SelectedItem as Person;
+
+            if (person == null)
+            {
+                MessageBox.Show("Person must be selected before update!");
+                return;
+            }
+
+            if (person != null)
+            {
+                person.Name = TxtName.Text;
+                person.Surname = TxtSurname.Text;
+
+                //var post = dataContext.Posts.FirstOrDefault();
+                //person.Post = post;
+            }
+            _personService.UpdatePerson(person);
+        }
+
+        private void BtnDeletePerson_Click(object sender, RoutedEventArgs e)
+        {
+            var person = MainDataGrid.SelectedItem as Person;
+
+            if (person == null)
+            {
+                MessageBox.Show("Person must be selected before delete!");
+                return;
+            }
+
+            if (person != null)
+            {
+                _personService.DeletePerson(person.Id);
+
+                TxtName.Text = string.Empty;
+                TxtSurname.Text = string.Empty;
+                TxtPost.Text = string.Empty;
+            }
         }
     }
 }

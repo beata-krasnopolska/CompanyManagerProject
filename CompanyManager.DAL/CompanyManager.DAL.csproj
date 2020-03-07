@@ -52,7 +52,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Entities\Person.cs" />
     <Compile Include="Entities\Post.cs" />
     <Compile Include="PersonContext.cs" />

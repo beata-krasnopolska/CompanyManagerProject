@@ -36,7 +36,7 @@
                 <Label Content="Name"></Label>
                 <TextBox x:Name ="TxtName" Margin="20,0"></TextBox>
                 <Label Content="Surname"></Label>
-                <TextBox x:Name ="TxtGender" Margin="20,0"></TextBox>
+                <TextBox x:Name ="TxtSurname" Margin="20,0"></TextBox>
                 <Label Content="Post"></Label>
                 <TextBox x:Name ="TxtPost" Margin="20,0"></TextBox>
             </StackPanel>
