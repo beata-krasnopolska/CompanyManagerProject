@@ -31,7 +31,12 @@ namespace CompanyManagerProject
             
         }
 
-        private void BtnAddPerson_Click(object sender, RoutedEventArgs e)
+        public void ShowPerson()
+        {
+            MainDataGrid.ItemsSource = _personService.GetPersons();
+        }
+
+            private void BtnAddPerson_Click(object sender, RoutedEventArgs e)
         {
             
             var person = new Person()
@@ -40,7 +45,8 @@ namespace CompanyManagerProject
                 Surname = TxtSurname.Text,
                 //Post = 
             };
-            _personService.InsertPerson(person);            
+            _personService.InsertPerson(person);
+            MainDataGrid.ItemsSource = _personService.GetPersons();
         }
 
         private void ListPersons_SelectionChanged(object sender, SelectionChangedEventArgs e)

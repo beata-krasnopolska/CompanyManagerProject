@@ -4,19 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CompanyManager.DAL.Entities;
+using System.Data.Entity;
 
 namespace CompanyManager.DAL.Repository
 {
     public class PersonService
     {
         //CRUD functions on Person Table
-
-        //private dataContext _context;
-
-        //public IEnumerable<Person> GetPersons()
-        //{
-        //    //return _context.Persons.ToList();
-        //}
+        
+        public IEnumerable<Person> GetPersons()
+        {
+            var context = new PersonContext();
+            return context.Persons.ToList();
+        }
 
         //public Person GetPersonByID(int personId)
         //{
@@ -25,18 +25,56 @@ namespace CompanyManager.DAL.Repository
 
         public void InsertPerson(Person person)
         {
-           // _context.Persons.Add(person);           
+            try
+            {
+                using(var context = new PersonContext())
+                {
+                    context.Persons.Attach(person);
+                    context.Entry(person).State = EntityState.Added;
+                    context.SaveChanges();
+                }
+            }
+            catch(Exception ex)
+            {
+                //MessageBox.Show(ex.ToString());
+            }          
         }
 
         public void DeletePerson(int personId)
         {
-            //Person person = _context.Persons.Find(personId);
-            //_context.Persons.Remove(person);
+            try
+            {
+                using (var context = new PersonContext())
+                {
+                    Person person = context.Persons.Find(personId);
+                    context.Persons.Remove(person);
+
+                    context.Persons.Attach(person);
+                    context.Entry(person).State = EntityState.Deleted;
+                    context.SaveChanges();
+                }
+            }
+            catch(Exception ex)
+            {
+                //MessageBox.Show(ex.ToString());
+            }
         }
 
         public void UpdatePerson(Person person)
         {
-            //_context.Entry(person).State = EntityState.Modified;
+            try
+            {
+                using (var context = new PersonContext())
+                {
+                    context.Persons.Attach(person);
+                    context.Entry(person).State = EntityState.Modified;
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show(ex.ToString());
+            }
         }
     }
 }

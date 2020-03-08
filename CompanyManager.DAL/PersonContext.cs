@@ -11,7 +11,7 @@ namespace CompanyManager.DAL
 {
     public class PersonContext : DbContext
     {
-         public PersonContext() : base("name=CompanyManagerConnectionString")
+         public PersonContext() : base("name=CompanyManagerDBConnectionString")
          {
          }
 
