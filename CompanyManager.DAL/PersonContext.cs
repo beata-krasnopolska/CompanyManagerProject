@@ -13,9 +13,11 @@ namespace CompanyManager.DAL
     {
          public PersonContext() : base("name=CompanyManagerDBConnectionString")
          {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<PersonContext, CompanyManager.DAL.Migrations.Configuration>());
          }
 
          public DbSet<Person> Persons { get; set; }
+
          //public DbSet<Post> Posts { get; set; }
 
          //protected override void OnModelCreating(DbModelBuilder modelBuilder)

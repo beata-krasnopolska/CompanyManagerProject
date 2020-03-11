@@ -10,6 +10,6 @@ namespace CompanyManager.DAL.Entities
     {
         public int Id { get; set; }
 
-        public string PostName { get; set; }
+        public string Name { get; set; }
     }
 }

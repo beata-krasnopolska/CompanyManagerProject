@@ -18,9 +18,6 @@ using CompanyManager.DAL.Entities;
 
 namespace CompanyManagerProject
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         private readonly PersonService _personService = new PersonService();
@@ -36,13 +33,13 @@ namespace CompanyManagerProject
             MainDataGrid.ItemsSource = _personService.GetPersons();
         }
 
-            private void BtnAddPerson_Click(object sender, RoutedEventArgs e)
+        private void BtnAddPerson_Click(object sender, RoutedEventArgs e)
         {
-            
+
             var person = new Person()
             {
-                Name = TxtName.Text,
-                Surname = TxtSurname.Text,
+                FirstName = "Anna", //TxtName.Text,
+                Surname = "Nowak", //TxtSurname.Text,
                 //Post = 
             };
             _personService.InsertPerson(person);
@@ -60,7 +57,7 @@ namespace CompanyManagerProject
 
             if (person != null)
             {
-                TxtName.Text = person.Name;
+                TxtName.Text = person.FirstName;
                 TxtSurname.Text = person.Surname;
                 //TxtPost.Text = person.Post.PostName;
             }
@@ -78,7 +75,7 @@ namespace CompanyManagerProject
 
             if (person != null)
             {
-                person.Name = TxtName.Text;
+                person.FirstName = TxtName.Text;
                 person.Surname = TxtSurname.Text;
 
                 //var post = dataContext.Posts.FirstOrDefault();

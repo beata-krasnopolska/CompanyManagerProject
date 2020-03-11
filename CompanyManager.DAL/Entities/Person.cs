@@ -12,7 +12,7 @@ namespace CompanyManager.DAL.Entities
 
         //public int PostId { get; set; }
 
-        public string Name { get; set; }
+        public string FirstName { get; set; }
 
         public string Surname { get; set; }
     }
