@@ -11,10 +11,15 @@ namespace CompanyManager.DAL
 {
     public class PersonContext : DbContext
     {
-         public PersonContext() : base("name=CompanyManagerDBConnectionString")
-         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<PersonContext, CompanyManager.DAL.Migrations.Configuration>());
-         }
+        public PersonContext() : base("name=CompanyManagerDBConnectionString")
+        {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<PersonContext, CompanyManager.DAL.Migrations.Configuration>());            
+        }
+
+        static PersonContext()
+        {
+            var ensureDLLIsCopied = System.Data.Entity.SqlServer.SqlProviderServices.Instance;
+        }
 
          public DbSet<Person> Persons { get; set; }
 
@@ -23,7 +28,6 @@ namespace CompanyManager.DAL
          //protected override void OnModelCreating(DbModelBuilder modelBuilder)
          //{
          //       modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-         //}
-       
+         //}       
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CompanyManagerProject"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Company Manager" Height="450" Width="800">
     
     <Grid>
         <Grid.ColumnDefinitions>
@@ -44,6 +44,7 @@
             <StackPanel Grid.Row="1" Margin="10" Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button x:Name="BtnUpdatePerson" Content="Update" HorizontalAlignment="Right" Margin="10,0,10,0" Click="BtnUpdatePerson_Click"/>
                 <Button x:Name="BtnDeletePerson" Content="Delete" HorizontalAlignment="Right" Margin="10,0,10,0" Click="BtnDeletePerson_Click"/>
+                <Button x:Name="BtnSearchPerson" Content="Search" HorizontalAlignment="Right" Margin="10,0,10,0" Click="BtnSearchPerson_Click"/>
             </StackPanel>
         </Grid>
     </Grid>

@@ -25,7 +25,7 @@ namespace CompanyManagerProject
         public MainWindow()
         {
             InitializeComponent();
-            
+            ShowPerson();
         }
 
         public void ShowPerson()
@@ -38,11 +38,19 @@ namespace CompanyManagerProject
 
             var person = new Person()
             {
-                FirstName = "Anna", //TxtName.Text,
-                Surname = "Nowak", //TxtSurname.Text,
+                FirstName = TxtName.Text,
+                Surname = TxtSurname.Text,
                 //Post = 
             };
-            _personService.InsertPerson(person);
+            try
+            {
+                _personService.InsertPerson(person);
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
             MainDataGrid.ItemsSource = _personService.GetPersons();
         }
 
@@ -81,7 +89,15 @@ namespace CompanyManagerProject
                 //var post = dataContext.Posts.FirstOrDefault();
                 //person.Post = post;
             }
-            _personService.UpdatePerson(person);
+            try
+            {
+                _personService.UpdatePerson(person);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            MainDataGrid.ItemsSource = _personService.GetPersons();
         }
 
         private void BtnDeletePerson_Click(object sender, RoutedEventArgs e)
@@ -96,12 +112,25 @@ namespace CompanyManagerProject
 
             if (person != null)
             {
-                _personService.DeletePerson(person.Id);
-
-                TxtName.Text = string.Empty;
-                TxtSurname.Text = string.Empty;
-                TxtPost.Text = string.Empty;
+                try
+                {
+                    _personService.DeletePerson(person.Id);
+                    TxtName.Text = string.Empty;
+                    TxtSurname.Text = string.Empty;
+                    TxtPost.Text = string.Empty;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+                MainDataGrid.ItemsSource = _personService.GetPersons();
             }
+        }
+
+        private void BtnSearchPerson_Click(object sender, RoutedEventArgs e)
+        {
+            var searchPersonDialog = new SearchPerson_Dialog();
+            searchPersonDialog.ShowDialog();
         }
     }
 }

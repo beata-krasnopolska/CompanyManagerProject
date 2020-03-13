@@ -18,62 +18,44 @@ namespace CompanyManager.DAL.Repository
             return context.Persons.ToList();
         }
 
-        //public Person GetPersonByID(int personId)
-        //{
-        //    //return _context.Persons.Find(personId);
-        //}
+        public Person GetPersonByID(int personId)
+        {
+            using (var context = new PersonContext())
+            {
+                return context.Persons.Find(personId);
+            }
+        }
 
         public void InsertPerson(Person person)
         {
-            try
+            using(var context = new PersonContext())
             {
-                using(var context = new PersonContext())
-                {
-                    context.Persons.Attach(person);
-                    context.Entry(person).State = EntityState.Added;
-                    context.SaveChanges();
-                }
-            }
-            catch(Exception ex)
-            {
-                //MessageBox.Show(ex.ToString());
-            }          
+                 context.Persons.Add(person);
+
+                 context.SaveChanges();
+            }       
         }
 
         public void DeletePerson(int personId)
         {
-            try
+            using (var context = new PersonContext())
             {
-                using (var context = new PersonContext())
-                {
-                    Person person = context.Persons.Find(personId);
-                    context.Persons.Remove(person);
+                 Person person = context.Persons.Find(personId);
+                 context.Persons.Remove(person);
 
-                    context.Persons.Attach(person);
-                    context.Entry(person).State = EntityState.Deleted;
-                    context.SaveChanges();
-                }
-            }
-            catch(Exception ex)
-            {
-                //MessageBox.Show(ex.ToString());
-            }
+                 context.Persons.Attach(person);
+                 context.Entry(person).State = EntityState.Deleted;
+                 context.SaveChanges();
+            }            
         }
 
         public void UpdatePerson(Person person)
         {
-            try
+            using (var context = new PersonContext())
             {
-                using (var context = new PersonContext())
-                {
-                    context.Persons.Attach(person);
-                    context.Entry(person).State = EntityState.Modified;
-                    context.SaveChanges();
-                }
-            }
-            catch (Exception ex)
-            {
-                //MessageBox.Show(ex.ToString());
+                 context.Persons.Attach(person);
+                 context.Entry(person).State = EntityState.Modified;
+                 context.SaveChanges();
             }
         }
     }
