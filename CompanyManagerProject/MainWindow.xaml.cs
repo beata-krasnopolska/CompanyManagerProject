@@ -1,20 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CompanyManager.DAL.Entities;
+using CompanyManager.DAL.Repository;
+using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Configuration;
-using CompanyManager.DAL.Repository;
-using CompanyManager.DAL.Entities;
 
 namespace CompanyManagerProject
 {
@@ -28,7 +16,7 @@ namespace CompanyManagerProject
             InitializeGrid();
         }
 
-        public void InitializeGrid()
+        private void InitializeGrid()
         {
             MainDataGrid.ItemsSource = _personService.GetPersons();
         }
@@ -36,12 +24,12 @@ namespace CompanyManagerProject
         private void BtnAddPerson_Click(object sender, RoutedEventArgs e)
         {
             var person = new Person()
-
             {
                 FirstName = TxtName.Text,
                 Surname = TxtSurname.Text,
                 //Post = 
             };
+
             try
             {
                 _personService.InsertPerson(person);
@@ -57,9 +45,7 @@ namespace CompanyManagerProject
 
         private void ListPersons_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var person = MainDataGrid.SelectedItem as Person;
-
-            if (person == null)
+            if (!(MainDataGrid.SelectedItem is Person person))
             {
                 return;
             }
@@ -90,6 +76,7 @@ namespace CompanyManagerProject
                 //var post = dataContext.Posts.FirstOrDefault();
                 //person.Post = post;
             }
+
             try
             {
                 _personService.UpdatePerson(person);

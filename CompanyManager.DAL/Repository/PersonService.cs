@@ -1,10 +1,7 @@
-﻿using System;
+﻿using CompanyManager.DAL.Entities;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CompanyManager.DAL.Entities;
 using System.Data.Entity;
+using System.Linq;
 
 namespace CompanyManager.DAL.Repository
 {
@@ -39,7 +36,7 @@ namespace CompanyManager.DAL.Repository
         {
             using (var context = new PersonContext())
             {
-                 Person person = context.Persons.Find(personId);
+                 Person person = context.Persons.FirstOrDefault(x => x.Id == personId);
                  context.Persons.Remove(person);
                  context.SaveChanges();
             }            
