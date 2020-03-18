@@ -25,18 +25,18 @@ namespace CompanyManagerProject
         public MainWindow()
         {
             InitializeComponent();
-            ShowPerson();
+            InitializeGrid();
         }
 
-        public void ShowPerson()
+        public void InitializeGrid()
         {
             MainDataGrid.ItemsSource = _personService.GetPersons();
         }
 
         private void BtnAddPerson_Click(object sender, RoutedEventArgs e)
         {
-
             var person = new Person()
+
             {
                 FirstName = TxtName.Text,
                 Surname = TxtSurname.Text,
@@ -51,7 +51,8 @@ namespace CompanyManagerProject
             {
                 MessageBox.Show(ex.ToString());
             }
-            MainDataGrid.ItemsSource = _personService.GetPersons();
+
+            InitializeGrid();
         }
 
         private void ListPersons_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -97,7 +98,8 @@ namespace CompanyManagerProject
             {
                 MessageBox.Show(ex.ToString());
             }
-            MainDataGrid.ItemsSource = _personService.GetPersons();
+
+            InitializeGrid();
         }
 
         private void BtnDeletePerson_Click(object sender, RoutedEventArgs e)
@@ -123,7 +125,8 @@ namespace CompanyManagerProject
                 {
                     MessageBox.Show(ex.ToString());
                 }
-                MainDataGrid.ItemsSource = _personService.GetPersons();
+
+                InitializeGrid();
             }
         }
 

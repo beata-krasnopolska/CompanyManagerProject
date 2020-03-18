@@ -10,19 +10,19 @@ namespace CompanyManager.DAL.Repository
 {
     public class PersonService
     {
-        //CRUD functions on Person Table
-        
         public IEnumerable<Person> GetPersons()
         {
-            var context = new PersonContext();
-            return context.Persons.ToList();
+            using (var context = new PersonContext())
+            {
+                return context.Persons.ToList();
+            }             
         }
 
         public Person GetPersonByID(int personId)
         {
             using (var context = new PersonContext())
             {
-                return context.Persons.Find(personId);
+                return context.Persons.FirstOrDefault(x => x.Id == personId);
             }
         }
 
@@ -31,7 +31,6 @@ namespace CompanyManager.DAL.Repository
             using(var context = new PersonContext())
             {
                  context.Persons.Add(person);
-
                  context.SaveChanges();
             }       
         }
@@ -42,9 +41,6 @@ namespace CompanyManager.DAL.Repository
             {
                  Person person = context.Persons.Find(personId);
                  context.Persons.Remove(person);
-
-                 context.Persons.Attach(person);
-                 context.Entry(person).State = EntityState.Deleted;
                  context.SaveChanges();
             }            
         }
