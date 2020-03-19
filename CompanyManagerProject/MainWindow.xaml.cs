@@ -1,28 +1,126 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CompanyManager.DAL.Entities;
+using CompanyManager.DAL.Repository;
+using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace CompanyManagerProject
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly PersonService _personService = new PersonService();
+
         public MainWindow()
         {
             InitializeComponent();
+            InitializeGrid();
+        }
+
+        private void InitializeGrid()
+        {
+            MainDataGrid.ItemsSource = _personService.GetPersons();
+        }
+
+        private void BtnAddPerson_Click(object sender, RoutedEventArgs e)
+        {
+            var person = new Person()
+            {
+                FirstName = TxtName.Text,
+                Surname = TxtSurname.Text,
+                //Post = 
+            };
+
+            try
+            {
+                _personService.InsertPerson(person);
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+
+            InitializeGrid();
+        }
+
+        private void ListPersons_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (!(MainDataGrid.SelectedItem is Person person))
+            {
+                return;
+            }
+
+            if (person != null)
+            {
+                TxtName.Text = person.FirstName;
+                TxtSurname.Text = person.Surname;
+                //TxtPost.Text = person.Post.PostName;
+            }
+        }
+
+        private void BtnUpdatePerson_Click(object sender, RoutedEventArgs e)
+        {
+            var person = MainDataGrid.SelectedItem as Person;
+
+            if (person == null)
+            {
+                MessageBox.Show("Person must be selected before update!");
+                return;
+            }
+
+            if (person != null)
+            {
+                person.FirstName = TxtName.Text;
+                person.Surname = TxtSurname.Text;
+
+                //var post = dataContext.Posts.FirstOrDefault();
+                //person.Post = post;
+            }
+
+            try
+            {
+                _personService.UpdatePerson(person);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+
+            InitializeGrid();
+        }
+
+        private void BtnDeletePerson_Click(object sender, RoutedEventArgs e)
+        {
+            var person = MainDataGrid.SelectedItem as Person;
+
+            if (person == null)
+            {
+                MessageBox.Show("Person must be selected before delete!");
+                return;
+            }
+
+            if (person != null)
+            {
+                try
+                {
+                    _personService.DeletePerson(person.Id);
+                    TxtName.Text = string.Empty;
+                    TxtSurname.Text = string.Empty;
+                    TxtPost.Text = string.Empty;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+
+                InitializeGrid();
+            }
+        }
+
+        private void BtnSearchPerson_Click(object sender, RoutedEventArgs e)
+        {
+            var searchPersonDialog = new SearchPerson_Dialog();
+            searchPersonDialog.ShowDialog();
         }
     }
 }
