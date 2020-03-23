@@ -23,7 +23,7 @@ namespace CompanyManager.DAL
 
          public DbSet<Person> Persons { get; set; }
 
-         //public DbSet<Post> Posts { get; set; }
+         public DbSet<Post> Posts { get; set; }
 
          //protected override void OnModelCreating(DbModelBuilder modelBuilder)
          //{

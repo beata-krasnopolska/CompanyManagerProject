@@ -27,13 +27,13 @@ namespace CompanyManagerProject
             {
                 FirstName = TxtName.Text,
                 Surname = TxtSurname.Text,
-                //Post = 
+                //PostId = int.Parse(TxtPost.Text),
+                //wpisać liczbę z tabeli jak już będę miałą zdefiniowane
             };
 
             try
             {
                 _personService.InsertPerson(person);
-                
             }
             catch (Exception ex)
             {
@@ -54,7 +54,7 @@ namespace CompanyManagerProject
             {
                 TxtName.Text = person.FirstName;
                 TxtSurname.Text = person.Surname;
-                //TxtPost.Text = person.Post.PostName;
+                TxtPost.Text = person.PostId.ToString();
             }
         }
 
@@ -72,7 +72,7 @@ namespace CompanyManagerProject
             {
                 person.FirstName = TxtName.Text;
                 person.Surname = TxtSurname.Text;
-
+                //person.PostId = int.Parse(TxtPost.Text);
                 //var post = dataContext.Posts.FirstOrDefault();
                 //person.Post = post;
             }
@@ -121,6 +121,12 @@ namespace CompanyManagerProject
         {
             var searchPersonDialog = new SearchPerson_Dialog();
             searchPersonDialog.ShowDialog();
+        }
+
+        private void BtnManagePosts_Click(object sender, RoutedEventArgs e)
+        {
+            var addPostDialod = new PostTable_Dialog();
+            addPostDialod.ShowDialog();
         }
     }
 }
