@@ -1,25 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CompanyManager.DAL.Entities;
+using CompanyManager.DAL.Repository;
+using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using CompanyManager.DAL.Entities;
-using CompanyManager.DAL.Repository;
 
 
 namespace CompanyManagerProject
 {
-    /// <summary>
-    /// Interaction logic for PostTable_Dialog.xaml
-    /// </summary>
     public partial class PostTable_Dialog : Window
     {
         private readonly PostService _postService = new PostService();
@@ -38,7 +25,7 @@ namespace CompanyManagerProject
                 return;
             }
 
-            if (post!= null)
+            if (post != null)
             {
                 PostNameTxt.Text = post.Name;
             }
@@ -51,9 +38,9 @@ namespace CompanyManagerProject
 
         private void BtnAddPost_Click(object sender, RoutedEventArgs e)
         {
-            var post = new Post()
+            var post = new Post
             {
-                Name = PostNameTxt.Text,
+                Name = PostNameTxt.Text
             };
 
             try
@@ -71,21 +58,19 @@ namespace CompanyManagerProject
         private void BtnUpdatePost_Click(object sender, RoutedEventArgs e)
         {
             var post = PostsListBox.SelectedItem as Post;
-            if(post == null)
-            {
-                MessageBox.Show("Post must be selected before update!");
-            }
 
-            if(post!= null)
+            if (post == null)
             {
-                post.Name = PostNameTxt.Text;
+                MessageBox.Show(Messages.TextUpdatePostBtn);
+                return;
             }
+                post.Name = PostNameTxt.Text;
 
             try
             {
                 _postService.UpdatePost(post);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
@@ -99,24 +84,21 @@ namespace CompanyManagerProject
 
             if (post == null)
             {
-                MessageBox.Show("Post must be selected before delete!");
+                MessageBox.Show(Messages.TextDeletePostBtn);
                 return;
             }
-
-            if (post != null)
+            
+            try
             {
-                try
-                {
-                    _postService.DeletePost(post.Id);
-                    PostNameTxt.Text = string.Empty;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.ToString());
-                }
-
-                InitializePostListBox();
+                _postService.DeletePost(post.Id);
+                PostNameTxt.Text = string.Empty;
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+
+            InitializePostListBox();            
         }
     }
 }

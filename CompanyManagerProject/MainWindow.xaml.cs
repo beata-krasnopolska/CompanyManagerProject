@@ -27,8 +27,7 @@ namespace CompanyManagerProject
             {
                 FirstName = TxtName.Text,
                 Surname = TxtSurname.Text,
-                //PostId = int.Parse(TxtPost.Text),
-                //wpisać liczbę z tabeli jak już będę miałą zdefiniowane
+                PostId = int.Parse(TxtPost.Text),
             };
 
             try
@@ -64,7 +63,7 @@ namespace CompanyManagerProject
 
             if (person == null)
             {
-                MessageBox.Show("Person must be selected before update!");
+                MessageBox.Show(Messages.TextUpdatePersonBtn);
                 return;
             }
 
@@ -72,9 +71,7 @@ namespace CompanyManagerProject
             {
                 person.FirstName = TxtName.Text;
                 person.Surname = TxtSurname.Text;
-                //person.PostId = int.Parse(TxtPost.Text);
-                //var post = dataContext.Posts.FirstOrDefault();
-                //person.Post = post;
+                person.PostId = int.Parse(TxtPost.Text);
             }
 
             try
@@ -95,7 +92,7 @@ namespace CompanyManagerProject
 
             if (person == null)
             {
-                MessageBox.Show("Person must be selected before delete!");
+                MessageBox.Show(Messages.TextDeletePersonBtn);
                 return;
             }
 

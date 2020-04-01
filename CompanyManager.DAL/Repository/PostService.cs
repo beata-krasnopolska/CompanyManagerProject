@@ -1,10 +1,7 @@
-﻿using System;
+﻿using CompanyManager.DAL.Entities;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CompanyManager.DAL.Entities;
 
 namespace CompanyManager.DAL.Repository
 {
@@ -18,7 +15,7 @@ namespace CompanyManager.DAL.Repository
             }
         }
 
-        public void InsertPost (Post post)
+        public void InsertPost(Post post)
         {
             using (var context = new PersonContext())
             {
@@ -31,7 +28,7 @@ namespace CompanyManager.DAL.Repository
         {
             using (var context = new PersonContext())
             {
-                Post post = context.Posts.FirstOrDefault(x => x.Id == postId);
+                var post = context.Posts.FirstOrDefault(x => x.Id == postId);
                 context.Posts.Remove(post);
                 context.SaveChanges();
             }

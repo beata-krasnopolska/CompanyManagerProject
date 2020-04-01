@@ -70,6 +70,14 @@
     <Compile Include="Migrations\202003211953064_PostDB-v2.designer.cs">
       <DependentUpon>202003211953064_PostDB-v2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003272031230_PersonDB-v3.cs" />
+    <Compile Include="Migrations\202003272031230_PersonDB-v3.designer.cs">
+      <DependentUpon>202003272031230_PersonDB-v3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003272035557_PostDB-v3.cs" />
+    <Compile Include="Migrations\202003272035557_PostDB-v3.designer.cs">
+      <DependentUpon>202003272035557_PostDB-v3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PersonContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -92,6 +100,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003211953064_PostDB-v2.resx">
       <DependentUpon>202003211953064_PostDB-v2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003272031230_PersonDB-v3.resx">
+      <DependentUpon>202003272031230_PersonDB-v3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003272035557_PostDB-v3.resx">
+      <DependentUpon>202003272035557_PostDB-v3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

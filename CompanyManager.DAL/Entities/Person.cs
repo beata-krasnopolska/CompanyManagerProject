@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CompanyManager.DAL.Entities
+﻿namespace CompanyManager.DAL.Entities
 {
     public class Person
     {
@@ -14,6 +8,10 @@ namespace CompanyManager.DAL.Entities
 
         public string Surname { get; set; }
 
-        public Post PostId { get; set; }
+        //Foreign key for Post:
+
+        public int? PostId { get; set; }
+
+        public Post Post { get; set; }
     }
 }
