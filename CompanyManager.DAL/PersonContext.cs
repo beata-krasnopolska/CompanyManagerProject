@@ -19,15 +19,10 @@ namespace CompanyManager.DAL
 
          public DbSet<Post> Posts { get; set; }
 
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             //modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-
-            //allows PostID to be null in Person class
-            modelBuilder.Entity<Person>()
-            .Property(b => b.PostId)
-            .IsOptional();
-            base.OnModelCreating(modelBuilder);
         }    
     }
 }

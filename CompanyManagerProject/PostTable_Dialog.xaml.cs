@@ -24,11 +24,8 @@ namespace CompanyManagerProject
             {
                 return;
             }
-
-            if (post != null)
-            {
-                PostNameTxt.Text = post.Name;
-            }
+            
+            PostNameTxt.Text = post.Name;            
         }
 
         private void InitializePostListBox()
@@ -38,6 +35,12 @@ namespace CompanyManagerProject
 
         private void BtnAddPost_Click(object sender, RoutedEventArgs e)
         {
+            if (PostNameTxt.Text.Length < 2)
+            {
+                MessageBox.Show(Messages.PostNameError);
+                return;
+            }
+
             var post = new Post
             {
                 Name = PostNameTxt.Text
@@ -61,10 +64,11 @@ namespace CompanyManagerProject
 
             if (post == null)
             {
-                MessageBox.Show(Messages.TextUpdatePostBtn);
+                MessageBox.Show(Messages.PostUpdateError);
                 return;
             }
-                post.Name = PostNameTxt.Text;
+
+            post.Name = PostNameTxt.Text;
 
             try
             {
@@ -84,7 +88,7 @@ namespace CompanyManagerProject
 
             if (post == null)
             {
-                MessageBox.Show(Messages.TextDeletePostBtn);
+                MessageBox.Show(Messages.PostDeleteError);
                 return;
             }
             

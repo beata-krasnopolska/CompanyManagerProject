@@ -23,6 +23,12 @@ namespace CompanyManagerProject
 
         private void BtnAddPerson_Click(object sender, RoutedEventArgs e)
         {
+            if (TxtName.Text == string.Empty || TxtSurname.Text == string.Empty || TxtPost.Text == string.Empty)
+            {
+                MessageBox.Show(Messages.PersonAddError);
+                return;
+            }
+
             var person = new Person()
             {
                 FirstName = TxtName.Text,
@@ -48,31 +54,24 @@ namespace CompanyManagerProject
             {
                 return;
             }
-
-            if (person != null)
-            {
-                TxtName.Text = person.FirstName;
-                TxtSurname.Text = person.Surname;
-                TxtPost.Text = person.PostId.ToString();
-            }
+                        
+            TxtName.Text = person.FirstName;
+            TxtSurname.Text = person.Surname;
+            TxtPost.Text = person.PostId.ToString();            
         }
 
         private void BtnUpdatePerson_Click(object sender, RoutedEventArgs e)
         {
-            var person = MainDataGrid.SelectedItem as Person;
 
-            if (person == null)
+            if (!(MainDataGrid.SelectedItem is Person person))
             {
-                MessageBox.Show(Messages.TextUpdatePersonBtn);
+                MessageBox.Show(Messages.PersonUpdateError);
                 return;
             }
-
-            if (person != null)
-            {
-                person.FirstName = TxtName.Text;
-                person.Surname = TxtSurname.Text;
-                person.PostId = int.Parse(TxtPost.Text);
-            }
+            
+            person.FirstName = TxtName.Text;
+            person.Surname = TxtSurname.Text;
+            person.PostId = int.Parse(TxtPost.Text);
 
             try
             {
@@ -88,30 +87,26 @@ namespace CompanyManagerProject
 
         private void BtnDeletePerson_Click(object sender, RoutedEventArgs e)
         {
-            var person = MainDataGrid.SelectedItem as Person;
 
-            if (person == null)
+            if (!(MainDataGrid.SelectedItem is Person person))
             {
-                MessageBox.Show(Messages.TextDeletePersonBtn);
+                MessageBox.Show(Messages.PersonDeleteError);
                 return;
             }
-
-            if (person != null)
+                        
+            try
             {
-                try
-                {
-                    _personService.DeletePerson(person.Id);
-                    TxtName.Text = string.Empty;
-                    TxtSurname.Text = string.Empty;
-                    TxtPost.Text = string.Empty;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.ToString());
-                }
-
-                InitializeGrid();
+                _personService.DeletePerson(person.Id);
+                TxtName.Text = string.Empty;
+                TxtSurname.Text = string.Empty;
+                TxtPost.Text = string.Empty;
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+
+            InitializeGrid();
         }
 
         private void BtnSearchPerson_Click(object sender, RoutedEventArgs e)

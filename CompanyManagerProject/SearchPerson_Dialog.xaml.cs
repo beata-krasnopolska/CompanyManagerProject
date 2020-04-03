@@ -15,11 +15,17 @@ namespace CompanyManagerProject
 
         private void SearchPersonButton_Dialog(object sender, RoutedEventArgs e)
         {
+            if (TxtId.Text == string.Empty)
+            {
+                MessageBox.Show(Messages.PersonSearchNoIdError);
+                return;
+            }
+
             var person = _personService.GetPersonById(int.Parse(TxtId.Text));
 
             if (person == null)
             {
-                MessageBox.Show(Messages.TextSearchPersonBtn);
+                MessageBox.Show(Messages.PersonSearchError);
                 return;
             }
 

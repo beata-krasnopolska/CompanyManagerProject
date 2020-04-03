@@ -56,7 +56,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Messages.cs" />
+    <Compile Include="Consts\Messages.cs" />
     <Compile Include="PostTable_Dialog.xaml.cs">
       <DependentUpon>PostTable_Dialog.xaml</DependentUpon>
     </Compile>
