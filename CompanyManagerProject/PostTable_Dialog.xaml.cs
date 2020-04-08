@@ -60,9 +60,7 @@ namespace CompanyManagerProject
 
         private void BtnUpdatePost_Click(object sender, RoutedEventArgs e)
         {
-            var post = PostsListBox.SelectedItem as Post;
-
-            if (post == null)
+            if (!(PostsListBox.SelectedItem is Post post))
             {
                 MessageBox.Show(Messages.PostUpdateError);
                 return;
@@ -84,14 +82,13 @@ namespace CompanyManagerProject
 
         private void BtnDeletePost_Click(object sender, RoutedEventArgs e)
         {
-            var post = PostsListBox.SelectedItem as Post;
 
-            if (post == null)
+            if (!(PostsListBox.SelectedItem is Post post))
             {
                 MessageBox.Show(Messages.PostDeleteError);
                 return;
             }
-            
+
             try
             {
                 _postService.DeletePost(post.Id);
