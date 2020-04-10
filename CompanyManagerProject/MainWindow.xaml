@@ -39,9 +39,11 @@
                 <TextBox x:Name ="TxtSurname" Margin="20,0"></TextBox>
                 <Label Content="Post"></Label>
                 <TextBox x:Name ="TxtPost" Margin="20,0"></TextBox>
+                <!--<ComboBox x:Name="PostComboBox" Text="Is not open" Height="26" Margin="20,0"></ComboBox>-->
             </StackPanel>
 
             <StackPanel Grid.Row="1" Margin="10" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button x:Name="BtnManagePosts" Content="Manage Posts" HorizontalAlignment="Right" Margin="10,0,10,0" Click="BtnManagePosts_Click"/>
                 <Button x:Name="BtnUpdatePerson" Content="Update" HorizontalAlignment="Right" Margin="10,0,10,0" Click="BtnUpdatePerson_Click"/>
                 <Button x:Name="BtnDeletePerson" Content="Delete" HorizontalAlignment="Right" Margin="10,0,10,0" Click="BtnDeletePerson_Click"/>
                 <Button x:Name="BtnSearchPerson" Content="Search" HorizontalAlignment="Right" Margin="10,0,10,0" Click="BtnSearchPerson_Click"/>

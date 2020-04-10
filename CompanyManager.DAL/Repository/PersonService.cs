@@ -15,7 +15,7 @@ namespace CompanyManager.DAL.Repository
             }             
         }
 
-        public Person GetPersonByID(int personId)
+        public Person GetPersonById(int personId)
         {
             using (var context = new PersonContext())
             {
@@ -25,7 +25,7 @@ namespace CompanyManager.DAL.Repository
 
         public void InsertPerson(Person person)
         {
-            using(var context = new PersonContext())
+            using (var context = new PersonContext())
             {
                  context.Persons.Add(person);
                  context.SaveChanges();
@@ -36,7 +36,7 @@ namespace CompanyManager.DAL.Repository
         {
             using (var context = new PersonContext())
             {
-                 Person person = context.Persons.FirstOrDefault(x => x.Id == personId);
+                 var person = context.Persons.FirstOrDefault(x => x.Id == personId);
                  context.Persons.Remove(person);
                  context.SaveChanges();
             }            
