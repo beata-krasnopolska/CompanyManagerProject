@@ -78,6 +78,10 @@
     <Compile Include="Migrations\202003272035557_PostDB-v3.designer.cs">
       <DependentUpon>202003272035557_PostDB-v3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005041904495_PersonDB-v4.cs" />
+    <Compile Include="Migrations\202005041904495_PersonDB-v4.designer.cs">
+      <DependentUpon>202005041904495_PersonDB-v4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PersonContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -106,6 +110,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003272035557_PostDB-v3.resx">
       <DependentUpon>202003272035557_PostDB-v3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005041904495_PersonDB-v4.resx">
+      <DependentUpon>202005041904495_PersonDB-v4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

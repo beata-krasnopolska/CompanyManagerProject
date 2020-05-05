@@ -1,0 +1,17 @@
+﻿<Window x:Class="CompanyManagerProject.SendSMS_Dialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CompanyManagerProject"
+        mc:Ignorable="d"
+        Title="SendSMS_Dialog" Height="287" Width="300">
+    <Grid>
+        <Label Content="Phone no:" HorizontalAlignment="Left" Height="26" Margin="25,26,0,0" VerticalAlignment="Top" Width="67"/>
+        <Label Content="Message:" HorizontalAlignment="Left" Height="26" Margin="30,69,0,0" VerticalAlignment="Top" Width="67"/>
+        <TextBox x:Name="TxtPhoneNo" HorizontalAlignment="Left" Height="26" Margin="97,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166"/>
+        <TextBox x:Name="TxtMessage" HorizontalAlignment="Left" Height="134" Margin="97,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166"/>
+        <Button Content="Send" HorizontalAlignment="Left" Height="22" Margin="97,224,0,0" VerticalAlignment="Top" Width="72" RenderTransformOrigin="0.083,0.5" Click="ButtonSend_Click"/>
+        <Button Content="Cancel" HorizontalAlignment="Left" Height="22" Margin="191,224,0,0" VerticalAlignment="Top" Width="72" RenderTransformOrigin="0.083,0.5" IsCancel="True"/>
+    </Grid>
+</Window>

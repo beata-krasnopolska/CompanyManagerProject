@@ -34,6 +34,7 @@ namespace CompanyManagerProject
                 FirstName = TxtName.Text,
                 Surname = TxtSurname.Text,
                 PostId = int.Parse(TxtPost.Text),
+                PhoneNo = int.Parse(TxtPhoneNumber.Text),
             };
 
             try
@@ -57,7 +58,8 @@ namespace CompanyManagerProject
                         
             TxtName.Text = person.FirstName;
             TxtSurname.Text = person.Surname;
-            TxtPost.Text = person.PostId.ToString();            
+            TxtPost.Text = person.PostId.ToString();
+            TxtPhoneNumber.Text = person.PhoneNo.ToString();
         }
 
         private void BtnUpdatePerson_Click(object sender, RoutedEventArgs e)
@@ -72,6 +74,7 @@ namespace CompanyManagerProject
             person.FirstName = TxtName.Text;
             person.Surname = TxtSurname.Text;
             person.PostId = int.Parse(TxtPost.Text);
+            person.PhoneNo = int.Parse(TxtPhoneNumber.Text);
 
             try
             {
@@ -100,6 +103,7 @@ namespace CompanyManagerProject
                 TxtName.Text = string.Empty;
                 TxtSurname.Text = string.Empty;
                 TxtPost.Text = string.Empty;
+                TxtPhoneNumber.Text = string.Empty;
             }
             catch (Exception ex)
             {
@@ -119,6 +123,12 @@ namespace CompanyManagerProject
         {
             var addPostDialod = new PostTable_Dialog();
             addPostDialod.ShowDialog();
+        }
+
+        private void BtnSendSMS_Click(object sender, RoutedEventArgs e)
+        {
+            var addSendSmsDialog = new SendSMS_Dialog();
+            addSendSmsDialog.ShowDialog();
         }
     }
 }
