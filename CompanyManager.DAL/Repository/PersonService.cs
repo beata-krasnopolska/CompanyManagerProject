@@ -11,7 +11,9 @@ namespace CompanyManager.DAL.Repository
         {
             using (var context = new PersonContext())
             {
-                return context.Persons.ToList();
+                return context.Persons
+                    .Include(p=>p.Post)
+                    .ToList();
             }             
         }
 

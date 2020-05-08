@@ -74,6 +74,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Consts\Messages.cs" />
+    <Compile Include="PersonViewModel.cs" />
     <Compile Include="PostTable_Dialog.xaml.cs">
       <DependentUpon>PostTable_Dialog.xaml</DependentUpon>
     </Compile>
