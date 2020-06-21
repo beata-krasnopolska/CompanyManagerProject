@@ -43,5 +43,13 @@ namespace CompanyManager.DAL.Repository
                 context.SaveChanges();
             }
         }
+
+        public Post GetPostByName(string name)
+        {
+            using(var context = new PersonContext())
+            {
+                return context.Posts.FirstOrDefault(x => x.Name==name);
+            }            
+        }
     }
 }

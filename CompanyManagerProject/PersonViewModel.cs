@@ -14,7 +14,7 @@ namespace CompanyManagerProject
 
         public string Surname { get; set; }
 
-        public string Post { get; set; }
+        public string PostName { get; set; }
 
         public int PhoneNo { get; set; }
     }

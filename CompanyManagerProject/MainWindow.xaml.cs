@@ -10,6 +10,7 @@ namespace CompanyManagerProject
     public partial class MainWindow : Window
     {
         private readonly PersonService _personService = new PersonService();
+        private readonly PostService _postService = new PostService();
 
         public MainWindow()
         {
@@ -25,7 +26,7 @@ namespace CompanyManagerProject
                 Id = x.Id,
                 FirstName = x.FirstName,
                 Surname = x.Surname,
-                Post = x.Post?.Name ?? string.Empty,
+                PostName = x.Post?.Name ?? string.Empty,
                 PhoneNo = x?.PhoneNo ?? 0,
             }).ToList();
             MainDataGrid.ItemsSource = personsViewModel;
@@ -68,7 +69,7 @@ namespace CompanyManagerProject
 
             TxtName.Text = personViewModel.FirstName;
             TxtSurname.Text = personViewModel.Surname;
-            TxtPost.Text = personViewModel.Post;
+            TxtPost.Text = personViewModel.PostName;
             TxtPhoneNumber.Text = personViewModel.PhoneNo.ToString();
 
             //TxtName.Text = person.FirstName;
@@ -88,13 +89,14 @@ namespace CompanyManagerProject
 
             personViewModel.FirstName = TxtName.Text;
             personViewModel.Surname = TxtSurname.Text;
-            personViewModel.Post = TxtPost.Text;
+            personViewModel.PostName = TxtPost.Text;
             personViewModel.PhoneNo = int.Parse(TxtPhoneNumber.Text);
 
             var person = new Person()
             {
                 FirstName = personViewModel.FirstName,
                 Surname = personViewModel.Surname,
+                PostId = (_postService.GetPostByName(personViewModel.PostName)).Id,
                 //PostId = int.Parse(TxtPost.Text),
                 PhoneNo = personViewModel.PhoneNo,
             };
